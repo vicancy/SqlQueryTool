@@ -1,0 +1,53 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Query</title>
+		<link rel="stylesheet" href="lib/codemirror.css" />
+		<script src="lib/codemirror.js"></script>
+		<script src="sql.js"></script>
+        <script src="addon/hint/simple-hint.js"></script>
+        <script src="addon/hint/sql-hint.js"></script>
+        <link rel="stylesheet" href="addon/hint/simple-hint.css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+		
+        <style>
+.CodeMirror {
+	border-top: 1px solid black;
+	border-bottom: 1px solid black;
+}
+		</style>
+		<link rel="stylesheet" href="../../doc/docs.css">
+		<script>
+         CodeMirror.commands.autocomplete = function (cm) {
+             CodeMirror.simpleHint(cm, CodeMirror.sqlHint);
+         }
+
+         var init = function () {
+             var mime = 'text/x-sql';
+
+             window.editor = CodeMirror.fromTextArea(document.getElementById('code'), {
+                 mode: mime,
+                 indentWithTabs: true,
+                 smartIndent: true,
+                 lineNumbers: true,
+                 matchBrackets: true,
+                 autofocus: true,
+                 onKeyEvent: function (cm, e) {
+                    if (e.type == 'keyup') {
+                        CodeMirror.simpleHint(cm, CodeMirror.sqlHint);
+                   
+                   }}
+             });
+
+             var text = window.editor.getValue();
+
+         };
+		</script>
+	</head>
+	<body onload="init();">
+		<form>
+			<textarea id="code" name="code"></textarea>
+		</form>
+	</body>
+</html>
