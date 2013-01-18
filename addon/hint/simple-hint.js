@@ -18,7 +18,7 @@
         return;
       }
 
-      var result = getHints(editor, givenOptions);
+      var result = getHints(editor, tempToken, givenOptions);
       if (!result || !result.list.length) return;
       var completions = result.list;
       function insert(str) {
@@ -39,12 +39,12 @@
       // multi-select, but it does properly support the size property on
       // single-selects, so no multi-select is necessary.
       if (!window.opera) sel.multiple = true;
-      for (var i = 0; i < keywords.length; ++i) {
+      for (var i = 0; i < completions.length; ++i) {
         var opt = sel.appendChild(document.createElement("option"));
-        opt.appendChild(document.createTextNode(keywords[i]));
+        opt.appendChild(document.createTextNode(completions[i]));
       }
       sel.firstChild.selected = true;
-      sel.size = Math.min(10, keywords.length);
+      sel.size = Math.min(10, completions.length);
       var pos = editor.cursorCoords(options.alignWithWord ? result.from : null);
       complete.style.left = pos.left + "px";
       complete.style.top = pos.bottom + "px";

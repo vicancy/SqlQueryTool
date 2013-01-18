@@ -5,6 +5,8 @@
 		<title>Query</title>
 		<link rel="stylesheet" href="lib/codemirror.css" />
 		<script src="lib/codemirror.js"></script>
+		<script src="global.js"></script>
+		<script src="syntax.js"></script>
 		<script src="sql.js"></script>
         <script src="addon/hint/simple-hint.js"></script>
         <script src="addon/hint/sql-hint.js"></script>
@@ -17,12 +19,9 @@
 	border-bottom: 1px solid black;
 }
 		</style>
-		<link rel="stylesheet" href="../../doc/docs.css">
-		<script>
-         CodeMirror.commands.autocomplete = function (cm) {
-             CodeMirror.simpleHint(cm, CodeMirror.sqlHint);
-         }
 
+		<script>
+         
          var init = function () {
              var mime = 'text/x-sql';
 
